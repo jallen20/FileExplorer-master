@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FileExplorer</string>
+    <string name="noFiles">No files to display</string>
+</resources>
