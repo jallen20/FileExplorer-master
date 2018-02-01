@@ -2,6 +2,8 @@ package edu.westga.android.fileexplorer;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,8 @@ import java.util.List;
 public class EntryAdapter  extends ArrayAdapter<Entry> {
     private static final String MP3_EXT = "mp3";
     private static final String TXT_EXT  = "txt";
+    private static final String PNG_EXT = "png";
+    private static final String JPG_EXT = "jpg";
 
     private Context context;
     private int resource;
@@ -56,11 +60,25 @@ public class EntryAdapter  extends ArrayAdapter<Entry> {
                 case TXT_EXT:
                     img.setImageResource(R.drawable.txt_icon);
                     break;
+                case PNG_EXT:
+                    img.setImageBitmap(this.makeThumbnail(entry));
+                    break;
+                case JPG_EXT:
+                    img.setImageBitmap(this.makeThumbnail(entry));
+                    break;
                 default:
                     img.setImageResource(R.drawable.file_icon);
                     break;
             }
         }
+    }
+
+    public Bitmap makeThumbnail(Entry entry) {
+        String path = entry.getPath();
+        Bitmap thumbnail = BitmapFactory.decodeFile(path);
+       // Bitmap resized = Bitmap.createBitmap(thumbnail, 1, 1, Ma)
+        return thumbnail;
+
     }
 
 }
