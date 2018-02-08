@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +20,11 @@ import java.util.List;
  */
 
 public class EntryAdapter  extends ArrayAdapter<Entry> {
-    private static final String MP3_EXT = "mp3";
-    private static final String TXT_EXT  = "txt";
-    private static final String PNG_EXT = "png";
-    private static final String JPG_EXT = "jpg";
+
+    private static final String MP3_EXT     =          "mp3";
+    private static final String TXT_EXT     =          "txt";
+    private static final String PNG_EXT     =          "png";
+    private static final String JPG_EXT     =          "jpg";
 
     private Context context;
     private int resource;
@@ -73,12 +75,11 @@ public class EntryAdapter  extends ArrayAdapter<Entry> {
         }
     }
 
-    public Bitmap makeThumbnail(Entry entry) {
+    private Bitmap makeThumbnail(Entry entry) {
         String path = entry.getPath();
         Bitmap thumbnail = BitmapFactory.decodeFile(path);
-       // Bitmap resized = Bitmap.createBitmap(thumbnail, 1, 1, Ma)
-        return thumbnail;
-
+        Bitmap resized = Bitmap.createBitmap(thumbnail, 2, 2, 30, 30);
+        return resized;
     }
 
 }

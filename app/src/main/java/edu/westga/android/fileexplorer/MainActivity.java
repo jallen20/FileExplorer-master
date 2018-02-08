@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -80,7 +78,9 @@ public class MainActivity extends ListActivity implements View.OnClickListener{
         super.onListItemClick(l,v,position,id);
         Entry entry = adapter.getItem(position);
         this.currentfile = new File(entry.getPath());
-        if (this.currentfile.isDirectory()) {
+        if (this.currentfile.isFile()) {
+            Intent intent = new Intent();
+        }
             if (this.currentfile.listFiles().length == 0) {
                 this.setToast("No files to display.");
             } else {
@@ -91,7 +91,7 @@ public class MainActivity extends ListActivity implements View.OnClickListener{
                     toolBar.setTitle(this.currentfile.getName());
                     generate(this.currentfile);
                 }
-            }
+
     }
 
     private void setToast(CharSequence message) {
